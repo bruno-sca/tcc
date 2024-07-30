@@ -1,0 +1,4 @@
+env
+semana1/GroundingDINO/**/*
+!semana1/GroundingDINO/*.ipynb
+coco_data
