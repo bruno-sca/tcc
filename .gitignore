@@ -1,4 +1,6 @@
 env
-semana1/GroundingDINO/**/*
-!semana1/GroundingDINO/*.ipynb
+part1/GroundingDINO/**/*
+!part1/GroundingDINO/*.ipynb
+GroundingDINO
+weights
 coco_data
