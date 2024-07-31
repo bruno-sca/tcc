@@ -1,6 +1,4 @@
 env
-part1/GroundingDINO/**/*
-!part1/GroundingDINO/*.ipynb
 GroundingDINO
 weights
 coco_data
