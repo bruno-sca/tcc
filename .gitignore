@@ -2,3 +2,5 @@ env
 GroundingDINO
 weights
 coco_data
+pcc/out/*
+!pcc/out/main.pdf

@@ -1,0 +1,188 @@
+% !TEX root = ./pcc.tex
+\documentclass[openany, a4paper,12pt, oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{amsfonts}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{units}
+\usepackage{placeins}
+\usepackage{listings}
+\usepackage{tabularx,colortbl}
+\usepackage{fancyhdr,lastpage}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{anysize}
+\marginsize{3.0cm}{2.5cm}{3.0cm}{2.5cm}
+\oddsidemargin 0.0cm
+\usepackage{transparent}
+\usepackage{eso-pic}
+\usepackage[T1]{fontenc}
+\usepackage{lscape}
+\usepackage{lettrine}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\usepackage{xcolor,colortbl}
+\usepackage{forloop}
+\usepackage{paralist}
+
+\hypersetup{
+    colorlinks=false,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Proposta de Projeto},
+    pdfpagemode=FullScreen,
+    }
+
+
+\apptocmd{\thebibliography}{\csname phantomsection\endcsname\addcontentsline{toc}{chapter}{\bibname}}{}{}
+
+\newcounter{loopcntr}
+\newcommand{\on}[1][1]{
+  \forloop{loopcntr}{0}{\value{loopcntr}<#1}{&\cellcolor{gray}}
+}
+\newcommand{\off}[1][1]{
+  \forloop{loopcntr}{0}{\value{loopcntr}<#1}{&}
+}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage[titletoc]{appendix}
+\usepackage{pdfpages}
+
+\def\myname{Bruno Santa Cruz de Assun\c{c}\~{a}o}
+\def\myemail{bruno.scassuncao@gmail.com}
+\def\mytitle{An\'{a}lise de Modelos zero-shot para Detec\c{c}\~{a}o de objetos.}
+\def\myadvisor{Filipe Rolim Cordeiro}
+\def\myadvisoremail{filipe.rolim@ufrpe.br}
+\def\concentrationarea{Visão Computacional}
+\def\researchline{Processamento de imagem}
+\def\map{\(\mathit{m}\)AP}
+
+\begin{document}
+\pagestyle{empty}
+\begin{flushright}
+  \noindent\rule{15cm}{0.4pt}\\[0.5cm]
+  \textbf{{ \LARGE Projeto de Conclus\~{a}o de Curso}}\\[0.1cm]
+  \noindent\rule{15cm}{0.4pt}\\[7cm]
+  \textbf{\Large \mytitle}\\[4cm]
+\end{flushright}
+
+\begin{center}
+  \textbf{\large \myname }\\[3cm]
+
+  \textbf{\large \'{A}rea de Concentra\c{c}\~{a}o:} \concentrationarea\\
+  \textbf{\large Orientador(a):} \myadvisor\\[2cm]
+  \vfill
+  \textsc{Recife, Julho/2023}.
+\end{center}
+\pagebreak
+\pagenumbering{gobble}
+
+\begin{center}
+  \textbf{\large Documento de Projeto de Pesquisa}\\[1cm]
+\end{center}
+\section{Identifica\c{c}\~{a}o}
+
+\textbf{Aluno(a):} \myname (\myemail)\\
+\textbf{Orientador(a):} \myadvisor (\myadvisoremail)\\
+\textbf{T\'{i}tulo:} \mytitle\\
+\textbf{\'{A}rea de Concentra\c{c}\~{a}o:} \concentrationarea\\
+\textbf{Linha de Pesquisa:} \researchline\\
+
+
+\section{Introdu\c{c}\~{a}o}
+
+
+A detec\c{c}\~{a}o de objetos é uma área fundamental na visão computacional, que lida com inst\'{a}ncias de objetos de uma de diversas classes conhecidas, fazendo o trabalho de  identificar e localizar de objetos em imagens e vídeos\cite{Amit2021}. Esta tarefa, tr\'{a}s informa\c{c}\~{o}es importantes para a an\'{a}lise de imagens, assim, se tornando base para diversas outras \'{a}reas da vis\~{a}o computacional, como reconhecimento de objetos, rastreamento de objetos e segmenta\c{c}\~{a}o de objetos\cite{10028728}.
+
+Com o r\'{a}pido desenvolvimento das t\'{e}cnicas de \textit{deep learning}, a detec\c{c}\~{a}o de objetos chegou a novos patamares\cite{nature14539}, sendo aplicada em diversas \'{a}reas, como carros aut\^{o}nomos \cite{cordts2016} e diagn\'{o}sticos m\'{e}dicos\cite{dong2017}. Tradicionalmente, os datasets utilizados nos modelos de detecção de imagem modernos exigem grandes quantidades de dados rotulados para treinar suas redes neurais de forma eficaz. No entanto, para a cria\c{c}\~{a}o destes datasets, exige a rotulagem manual que é um processo dispendioso e demorado\cite{shankar2017}\cite{cordts2016}.
+
+Neste contexto, surgem os modelos de detecção de imagem \textit{zero-shot}, que representam uma abordagem inovadora para superar as limitações impostas pela necessidade de dados rotulados. Esses modelos são capazes de identificar e classificar objetos em imagens sem a necessidade de terem sido previamente treinados com exemplos específicos dessas categorias\cite{Bansal_2018_ECCV}. Através da utilização de técnicas avançadas, como o aprendizado por transferência\cite{Qi2011}\cite{fu2017} e a incorporação de conhecimento semântico\cite{joulin2016}\cite{mikolov2013}, os modelos \textit{zero-shot} oferecem uma solução promissora para expandir a aplicabilidade da visão computacional em cenários onde a disponibilidade de dados é restrita.
+
+\section{Problema de Pesquisa}
+
+O aprendizado \textit{zero-shot} é uma abordagem promissora para a detecção de objetos em imagens, mas ainda existem desafios significativos a serem superados. A eficácia dos modelos \textit{zero-shot} depende fortemente da qualidade dos vetores de características extraídos das imagens e da capacidade do modelo de generalizar para novas categorias de objetos. Além disso, a interpretabilidade dos modelos \textit{zero-shot} é uma questão crítica, uma vez que a capacidade de explicar as decisões tomadas pelo modelo é essencial para a confiança e aceitação dos usuários\cite{Bansal_2018_ECCV}.
+
+Como o aprendizado \textit{zero-shot} busca identificar objetos que n\~{a}o foram previamente observados durante o treinamento\cite{lampert2014}\cite{Rohrbach2011}, \'{e} visto uma r\'{a}pida ascen\c{c}\~{a}o no n\'{u}mero de m\'{e}todos deste tipo propostos todos os anos. Como resultado, a compara\c{c}\~{a}o entre os diferentes modelos existentes torna-se uma tarefa desafiadora, uma vez que os métodos propostos variam significativamente em termos de arquitetura, complexidade e desempenho\cite{xian2020}.
+
+Sendo assim, como podemos avaliar e comparar de forma eficaz os modelos \textit{zero-shot} para detecção de objetos em imagens? Quais são as principais métricas e benchmarks utilizados para avaliar o desempenho desses modelos? Quais são os desafios e oportunidades para a pesquisa futura nesta área? Estas são algumas das questões que motivam esta proposta de pesquisa.
+
+\section{Justificativa}
+
+Parte significante do avan\c{c}o das t\'{e}cnicas de detec\c{c}\~{a}o de imagem, \'{e} proveniente de competi\c{c}\~{o}es feitas em cima de datasets p\'{u}blicos desafiadores, como o COCO\cite{lin2015} e Pascal VOC\cite{everingham2010}, tendo como principal m\'{e}trica a mediana da precis\~{a}o m\'{e}dia (\map).
+
+Como apontado por Bolya et al.\cite{tide}, h\'{a} um grande problema em optimizar seu modelo para a \map, que ao prioriza-la, podemos inadvertidamente deixar de lado a import\^{a}ncia relativa de cada tipo de erro que podem variar entre aplica\c{c}\~{o}es, assim, entender como as fontes de erro afetam o {\map} geral \'{e} crucial para desenvolver novos modelos e escolher o modelo correto para uma determinada aplica\c{c}\~{a}o.
+
+Para a an\'{a}lise dos modelos, proponho a utiliza\c{c}\~{a}o da ferramenta TIDE, uma ferramenta de interpreta\c{c}\~{a}o de detec\c{c}\~{a}o de objetos que:
+\begin{inparaenum}[(i)]
+  \item sumariza os tipos de erro de forma compacta para f\'{a}cil compara\c{c}\~{a}o;
+  \item isola completamente a contribui\c{c}\~{a}o de cada tipo de erro, de forma que n\~{a}o haja vari\'{a}veis conflitantes que afetem conclus\~{o}es;
+  \item n\~{a}o requer um tipo espec\'{i}fico de anota\c{c}\~{o}es, assim, permitindo a compara\c{c}\~{a}o entre datasets;
+  \item permite uma an\'{a}lise detalhada se desejado, para que a fonte de erro possa ser isolada.
+\end{inparaenum}
+\cite{tide}.
+
+\section{Objetivos}
+
+\subsection{Objetivo Geral:}
+
+Analisar e comparar modelos \textit{zero-shot} para detecção de objetos em imagens, avaliando a eficácia, interpretabilidade e generalização dos modelos em diferentes cenários utilizado a ferramenta TIDE.
+
+\subsection{Objetivos Espec\'{i}ficos:}
+\begin{enumerate}
+  \item Analizar a efic\'{a}cia de diferentes modelos \textit{zero-shot} para detec\c{c}\~{a}o de imagem.
+  \item Realizar uma an\'{a}lise comparativa entre modelos \textit{zero-shot}.
+\end{enumerate}
+
+\section{Etapas de Pesquisa}
+
+Etapas:
+\begin{enumerate}
+  \item Realizar revis\~{a}o bibliogr\'{a}fica
+  \item Definir diferentes \textit{datasets} para testes em diferentes cen\'{a}rios.
+  \item Aplicar diferentes modelos \textit{zero-shot} nos diferentes cen\'{a}rios.
+  \item Analisar os resultados e comparar os modelos.
+  \item Escrita.
+  \item Defesa.
+\end{enumerate}
+
+\section{Cronograma}
+
+
+\begin{tabular}{ | c | c | c | c | c | c | c | c | c | }
+  \hline
+  \multirow{2}{*}{Atividades} & \multicolumn{8}{c}{2024-2025} \vline                                           \\
+  \cline{2-9}                 & Set                                  & Out & Nov & Dez & Jan & Fev & Mar & Abr \\
+  \hline
+  Revis\~{a}o bibliogr\'{a}fica \on[3] \on[5]                                                                  \\
+  \hline
+  Defini\c{c}\~{a}o de bases de dados \on[1] \off[7]                                                           \\
+
+  \hline
+  Aplica\c{c}\~{a}o de modelos \off[1] \on[3] \off[4]                                                          \\
+  \hline
+  An\'{a}lise e compara\c{c}\~{a}o de resultados \off[4] \on[2] \off[2]                                        \\
+  \hline
+  Escrita \off[6] \on[2]                                                                                       \\
+  \hline
+  Defesa \off[7] \on[1]                                                                                        \\
+  \hline
+\end{tabular}
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+\end{document}
