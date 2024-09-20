@@ -62,11 +62,11 @@
 
 \def\myname{Bruno Santa Cruz de Assun\c{c}\~{a}o}
 \def\myemail{bruno.scassuncao@gmail.com}
-\def\mytitle{An\'{a}lise de Modelos zero-shot para Detec\c{c}\~{a}o de objetos.}
+\def\mytitle{An\'{a}lise de Erros Modelos zero-shot para Detec\c{c}\~{a}o de Objetos.}
 \def\myadvisor{Filipe Rolim Cordeiro}
 \def\myadvisoremail{filipe.rolim@ufrpe.br}
 \def\concentrationarea{Visão Computacional}
-\def\researchline{Processamento de imagem}
+\def\researchline{Detec\c{c}\~{a}o de Objetos}
 \def\map{\(\mathit{m}\)AP}
 
 \begin{document}
@@ -104,9 +104,9 @@
 \section{Introdu\c{c}\~{a}o}
 
 
-A detec\c{c}\~{a}o de objetos é uma área fundamental na visão computacional, que lida com inst\'{a}ncias de objetos de uma de diversas classes conhecidas, fazendo o trabalho de  identificar e localizar de objetos em imagens e vídeos\cite{Amit2021}. Esta tarefa, tr\'{a}s informa\c{c}\~{o}es importantes para a an\'{a}lise de imagens, assim, se tornando base para diversas outras \'{a}reas da vis\~{a}o computacional, como reconhecimento de objetos, rastreamento de objetos e segmenta\c{c}\~{a}o de objetos\cite{10028728}.
+A detec\c{c}\~{a}o de objetos é uma área fundamental na visão computacional, que lida com inst\^{a}ncias de objetos de classes conhecidas, fazendo o trabalho de identificar e localizar de objetos em imagens e vídeos\cite{Amit2021}. Esta tarefa traz informa\c{c}\~{o}es importantes para a an\'{a}lise de imagens, assim, se tornando base para diversas outras \'{a}reas da vis\~{a}o computacional, como reconhecimento, rastreamento e segmenta\c{c}\~{a}o de objetos\cite{10028728}.
 
-Com o r\'{a}pido desenvolvimento das t\'{e}cnicas de \textit{deep learning}, a detec\c{c}\~{a}o de objetos chegou a novos patamares\cite{nature14539}, sendo aplicada em diversas \'{a}reas, como carros aut\^{o}nomos \cite{cordts2016} e diagn\'{o}sticos m\'{e}dicos\cite{dong2017}. Tradicionalmente, os datasets utilizados nos modelos de detecção de imagem modernos exigem grandes quantidades de dados rotulados para treinar suas redes neurais de forma eficaz. No entanto, para a cria\c{c}\~{a}o destes datasets, exige a rotulagem manual que é um processo dispendioso e demorado\cite{shankar2017}\cite{cordts2016}.
+Com o r\'{a}pido desenvolvimento das t\'{e}cnicas de \textit{deep learning}, a detec\c{c}\~{a}o de objetos chegou a novos patamares\cite{nature14539}, sendo aplicada em diversas \'{a}reas, como carros aut\^{o}nomos \cite{cordts2016} e diagn\'{o}sticos m\'{e}dicos\cite{dong2017}. Tradicionalmente, os \textit{datasets} utilizados nos modelos de detecção de imagem modernos exigem grandes quantidades de dados rotulados para treinar suas redes neurais de forma eficaz. No entanto, para a cria\c{c}\~{a}o destas bases de dados, exige a rotulagem manual que é um processo dispendioso e demorado\cite{shankar2017}\cite{cordts2016}.
 
 Neste contexto, surgem os modelos de detecção de imagem \textit{zero-shot}, que representam uma abordagem inovadora para superar as limitações impostas pela necessidade de dados rotulados. Esses modelos são capazes de identificar e classificar objetos em imagens sem a necessidade de terem sido previamente treinados com exemplos específicos dessas categorias\cite{Bansal_2018_ECCV}. Através da utilização de técnicas avançadas, como o aprendizado por transferência\cite{Qi2011}\cite{fu2017} e a incorporação de conhecimento semântico\cite{joulin2016}\cite{mikolov2013}, os modelos \textit{zero-shot} oferecem uma solução promissora para expandir a aplicabilidade da visão computacional em cenários onde a disponibilidade de dados é restrita.
 
@@ -116,7 +116,7 @@ O aprendizado \textit{zero-shot} é uma abordagem promissora para a detecção d
 
 Como o aprendizado \textit{zero-shot} busca identificar objetos que n\~{a}o foram previamente observados durante o treinamento\cite{lampert2014}\cite{Rohrbach2011}, \'{e} visto uma r\'{a}pida ascen\c{c}\~{a}o no n\'{u}mero de m\'{e}todos deste tipo propostos todos os anos. Como resultado, a compara\c{c}\~{a}o entre os diferentes modelos existentes torna-se uma tarefa desafiadora, uma vez que os métodos propostos variam significativamente em termos de arquitetura, complexidade e desempenho\cite{xian2020}.
 
-Sendo assim, como podemos avaliar e comparar de forma eficaz os modelos \textit{zero-shot} para detecção de objetos em imagens? Quais são as principais métricas e benchmarks utilizados para avaliar o desempenho desses modelos? Quais são os desafios e oportunidades para a pesquisa futura nesta área? Estas são algumas das questões que motivam esta proposta de pesquisa.
+Sendo assim, como podemos avaliar e comparar de forma eficaz os modelos \textit{zero-shot} para detecção de objetos em imagens? Quais são as principais métricas e \textit{benchmarks} utilizados para avaliar o desempenho desses modelos? Quais são os desafios e oportunidades para a pesquisa futura nesta área? Estas são algumas das questões que motivam esta proposta de pesquisa.
 
 \section{Justificativa}
 
@@ -124,7 +124,7 @@ Parte significante do avan\c{c}o das t\'{e}cnicas de detec\c{c}\~{a}o de imagem,
 
 Como apontado por Bolya et al.\cite{tide}, h\'{a} um grande problema em optimizar seu modelo para a \map, que ao prioriza-la, podemos inadvertidamente deixar de lado a import\^{a}ncia relativa de cada tipo de erro que podem variar entre aplica\c{c}\~{o}es, assim, entender como as fontes de erro afetam o {\map} geral \'{e} crucial para desenvolver novos modelos e escolher o modelo correto para uma determinada aplica\c{c}\~{a}o.
 
-Para a an\'{a}lise dos modelos, proponho a utiliza\c{c}\~{a}o da ferramenta TIDE, uma ferramenta de interpreta\c{c}\~{a}o de detec\c{c}\~{a}o de objetos que:
+Para a an\'{a}lise dos modelos, este trabalho prop\~{o}e a utiliza\c{c}\~{a}o da ferramenta TIDE, uma ferramenta de interpreta\c{c}\~{a}o de detec\c{c}\~{a}o de objetos que:
 \begin{inparaenum}[(i)]
   \item sumariza os tipos de erro de forma compacta para f\'{a}cil compara\c{c}\~{a}o;
   \item isola completamente a contribui\c{c}\~{a}o de cada tipo de erro, de forma que n\~{a}o haja vari\'{a}veis conflitantes que afetem conclus\~{o}es;
@@ -160,23 +160,23 @@ Etapas:
 \section{Cronograma}
 
 
-\begin{tabular}{ | c | c | c | c | c | c | c | c | c | }
+\begin{tabular}{ | c | c | c | c | c | c | c | c | }
   \hline
   \multirow{2}{*}{Atividades} & \multicolumn{8}{c}{2024-2025} \vline                                           \\
-  \cline{2-9}                 & Set                                  & Out & Nov & Dez & Jan & Fev & Mar & Abr \\
+  \cline{2-8}                 & Set                                  & Out & Nov & Dez & Jan & Fev & Mar \\
   \hline
-  Revis\~{a}o bibliogr\'{a}fica \on[3] \on[5]                                                                  \\
+  Revis\~{a}o bibliogr\'{a}fica \on[3] \off[5]                                                                  \\
   \hline
   Defini\c{c}\~{a}o de bases de dados \on[1] \off[7]                                                           \\
 
   \hline
-  Aplica\c{c}\~{a}o de modelos \off[1] \on[3] \off[4]                                                          \\
+  Aplica\c{c}\~{a}o de modelos \off[1] \on[2] \off[4]                                                          \\
   \hline
-  An\'{a}lise e compara\c{c}\~{a}o de resultados \off[4] \on[2] \off[2]                                        \\
+  An\'{a}lise e compara\c{c}\~{a}o de resultados \off[3] \on[2] \off[2]                                        \\
   \hline
-  Escrita \off[6] \on[2]                                                                                       \\
+  Escrita \off[5] \on[2]                                                                                       \\
   \hline
-  Defesa \off[7] \on[1]                                                                                        \\
+  Defesa \off[6] \on[1]                                                                                        \\
   \hline
 \end{tabular}
 
