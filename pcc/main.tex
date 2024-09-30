@@ -4,8 +4,8 @@
 \usepackage[brazil]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[scaled]{helvet}
-\renewcommand*\familydefault{\sfdefault}
-\usepackage{amsfonts}
+% \renewcommand*\familydefault{\sfdefault}
+% \usepackage{amsfonts}
 \usepackage{multirow}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -104,7 +104,7 @@
 \section{Introdu\c{c}\~{a}o}
 
 
-A detec\c{c}\~{a}o de objetos é uma área fundamental na visão computacional, que lida com inst\^{a}ncias de objetos de classes conhecidas, fazendo o trabalho de identificar e localizar de objetos em imagens e vídeos\cite{Amit2021}. Esta tarefa traz informa\c{c}\~{o}es importantes para a an\'{a}lise de imagens, assim, se tornando base para diversas outras \'{a}reas da vis\~{a}o computacional, como reconhecimento, rastreamento e segmenta\c{c}\~{a}o de objetos\cite{10028728}.
+A detec\c{c}\~{a}o de objetos é uma área fundamental na visão computacional, que lida com inst\^{a}ncias de objetos de classes conhecidas, fazendo o trabalho de identificar e localizar objetos em imagens e vídeos\cite{Amit2021}. Esta tarefa traz informa\c{c}\~{o}es importantes para a an\'{a}lise de imagens, assim, se tornando base para diversas outras \'{a}reas da vis\~{a}o computacional, como reconhecimento, rastreamento e segmenta\c{c}\~{a}o de objetos\cite{10028728}.
 
 Com o r\'{a}pido desenvolvimento das t\'{e}cnicas de \textit{deep learning}, a detec\c{c}\~{a}o de objetos chegou a novos patamares\cite{nature14539}, sendo aplicada em diversas \'{a}reas, como carros aut\^{o}nomos \cite{cordts2016} e diagn\'{o}sticos m\'{e}dicos\cite{dong2017}. Tradicionalmente, os \textit{datasets} utilizados nos modelos de detecção de imagem modernos exigem grandes quantidades de dados rotulados para treinar suas redes neurais de forma eficaz. No entanto, para a cria\c{c}\~{a}o destas bases de dados, exige a rotulagem manual que é um processo dispendioso e demorado\cite{shankar2017}\cite{cordts2016}.
 
@@ -114,7 +114,7 @@ Neste contexto, surgem os modelos de detecção de imagem \textit{zero-shot}, qu
 
 O aprendizado \textit{zero-shot} é uma abordagem promissora para a detecção de objetos em imagens, mas ainda existem desafios significativos a serem superados. A eficácia dos modelos \textit{zero-shot} depende fortemente da qualidade dos vetores de características extraídos das imagens e da capacidade do modelo de generalizar para novas categorias de objetos. Além disso, a interpretabilidade dos modelos \textit{zero-shot} é uma questão crítica, uma vez que a capacidade de explicar as decisões tomadas pelo modelo é essencial para a confiança e aceitação dos usuários\cite{Bansal_2018_ECCV}.
 
-Como o aprendizado \textit{zero-shot} busca identificar objetos que n\~{a}o foram previamente observados durante o treinamento\cite{lampert2014}\cite{Rohrbach2011}, \'{e} visto uma r\'{a}pida ascen\c{c}\~{a}o no n\'{u}mero de m\'{e}todos deste tipo propostos todos os anos. Como resultado, a compara\c{c}\~{a}o entre os diferentes modelos existentes torna-se uma tarefa desafiadora, uma vez que os métodos propostos variam significativamente em termos de arquitetura, complexidade e desempenho\cite{xian2020}.
+Como o aprendizado \textit{zero-shot} busca identificar objetos que n\~{a}o foram previamente observados durante o treinamento\cite{lampert2014}\cite{Rohrbach2011}, \'{e} visto uma r\'{a}pida ascens\~{a}o no n\'{u}mero de m\'{e}todos deste tipo propostos todos os anos. Como resultado, a compara\c{c}\~{a}o entre os diferentes modelos existentes torna-se uma tarefa desafiadora, uma vez que os métodos propostos variam significativamente em termos de arquitetura, complexidade e desempenho\cite{xian2020}.
 
 Sendo assim, como podemos avaliar e comparar de forma eficaz os modelos \textit{zero-shot} para detecção de objetos em imagens? Quais são as principais métricas e \textit{benchmarks} utilizados para avaliar o desempenho desses modelos? Quais são os desafios e oportunidades para a pesquisa futura nesta área? Estas são algumas das questões que motivam esta proposta de pesquisa.
 
@@ -122,7 +122,7 @@ Sendo assim, como podemos avaliar e comparar de forma eficaz os modelos \textit{
 
 Parte significante do avan\c{c}o das t\'{e}cnicas de detec\c{c}\~{a}o de imagem, \'{e} proveniente de competi\c{c}\~{o}es feitas em cima de datasets p\'{u}blicos desafiadores, como o COCO\cite{lin2015} e Pascal VOC\cite{everingham2010}, tendo como principal m\'{e}trica a mediana da precis\~{a}o m\'{e}dia (\map).
 
-Como apontado por Bolya et al.\cite{tide}, h\'{a} um grande problema em optimizar seu modelo para a \map, que ao prioriza-la, podemos inadvertidamente deixar de lado a import\^{a}ncia relativa de cada tipo de erro que podem variar entre aplica\c{c}\~{o}es, assim, entender como as fontes de erro afetam o {\map} geral \'{e} crucial para desenvolver novos modelos e escolher o modelo correto para uma determinada aplica\c{c}\~{a}o.
+Como apontado por Bolya et al.\cite{tide}, h\'{a} um grande problema em otimizar seu modelo para a \map, que ao prioriz\'{a}-la, podemos inadvertidamente deixar de lado a import\^{a}ncia relativa de cada tipo de erro que podem variar entre aplica\c{c}\~{o}es, assim, entender como as fontes de erro afetam o {\map} geral \'{e} crucial para desenvolver novos modelos e escolher o modelo correto para uma determinada aplica\c{c}\~{a}o.
 
 Para a an\'{a}lise dos modelos, este trabalho prop\~{o}e a utiliza\c{c}\~{a}o da ferramenta TIDE, uma ferramenta de interpreta\c{c}\~{a}o de detec\c{c}\~{a}o de objetos que:
 \begin{inparaenum}[(i)]
@@ -137,7 +137,7 @@ Para a an\'{a}lise dos modelos, este trabalho prop\~{o}e a utiliza\c{c}\~{a}o da
 
 \subsection{Objetivo Geral:}
 
-Analisar e comparar modelos \textit{zero-shot} para detecção de objetos em imagens, avaliando a eficácia, interpretabilidade e generalização dos modelos em diferentes cenários utilizado a ferramenta TIDE.
+Analisar e comparar modelos \textit{zero-shot} para detecção de objetos em imagens, avaliando a eficácia, interpretabilidade e generalização dos modelos em diferentes cenários utilizando a ferramenta TIDE.
 
 \subsection{Objetivos Espec\'{i}ficos:}
 \begin{enumerate}
@@ -162,12 +162,12 @@ Etapas:
 
 \begin{tabular}{ | c | c | c | c | c | c | c | c | }
   \hline
-  \multirow{2}{*}{Atividades} & \multicolumn{8}{c}{2024-2025} \vline                                           \\
-  \cline{2-8}                 & Set                                  & Out & Nov & Dez & Jan & Fev & Mar \\
+  \multirow{2}{*}{Atividades} & \multicolumn{7}{c}{2024-2025} \vline                                           \\
+  \cline{2-7}                 & Set                                  & Out & Nov & Dez & Jan & Fev & Mar \\
   \hline
-  Revis\~{a}o bibliogr\'{a}fica \on[3] \off[5]                                                                  \\
+  Revis\~{a}o bibliogr\'{a}fica \on[3] \off[4]                                                                  \\
   \hline
-  Defini\c{c}\~{a}o de bases de dados \on[1] \off[7]                                                           \\
+  Defini\c{c}\~{a}o de bases de dados \on[1] \off[6]                                                           \\
 
   \hline
   Aplica\c{c}\~{a}o de modelos \off[1] \on[2] \off[4]                                                          \\

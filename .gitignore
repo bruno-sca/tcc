@@ -1,4 +1,7 @@
 env
+.env
+.venv
+
 GroundingDINO
 weights
 coco_data
